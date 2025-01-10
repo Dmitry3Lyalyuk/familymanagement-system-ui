@@ -3,15 +3,18 @@ import { IPaginatedResponse, UserService } from '../../services/user.service';
 import { SnakbarService } from '../../services/snakbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { single } from 'rxjs';
-import { User } from '../../models/user.type';
+import { IUser } from '../../models/user.type';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-user',
-  imports: [],
+  imports: [MatTableModule, MatIconModule, MatButtonModule, MatPaginatorModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
@@ -20,7 +23,7 @@ export class UserComponent implements OnInit {
   snackbar=inject(SnakbarService);
   dialog=inject(MatDialog);
 
-  users= signal<Array<User>>([]);
+  users= signal<Array<IUser>>([]);
   pageNumber = 0;
   pageSize = 5;
   totalCount = 0;
@@ -35,9 +38,9 @@ export class UserComponent implements OnInit {
 
   loadUsers(): void {
     this.userService.getPaginatedUsers(this.pageNumber, this.pageSize).subscribe({
-      next: (response: IPaginatedResponse<User>) =>{
-        this.userService.set(response.items);
-        this.totalCount=response.totalCount;
+      next: (response: IPaginatedResponse<IUser>) => {
+        this.users.set(response.items);
+        this.totalCount = response.totalCount;
       },
       error: (err) => {
         console.error(err);
@@ -45,7 +48,7 @@ export class UserComponent implements OnInit {
     })
   }
 
-  onEditUser(user: User): void {
+  onEditUser(user: IUser): void {
     const dialogRef = this.dialog.open(EditUserComponent, {
       data: user
     });

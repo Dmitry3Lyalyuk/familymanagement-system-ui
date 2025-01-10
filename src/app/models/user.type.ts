@@ -1,4 +1,4 @@
-export type User={
+export interface IUser {
   id: string;
   userName: string;
   country: string;

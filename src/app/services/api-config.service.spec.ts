@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { ApiConfigService } from './api-config.service';
 
-import { ApiConfigService } from '../api-config.service';
+
 
 describe('ApiConfigService', () => {
   let service: ApiConfigService;

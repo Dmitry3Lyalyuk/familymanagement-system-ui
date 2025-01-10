@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ApiConfigService } from './api-config.service';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { User } from '../models/user.type';
-import { UserUpdate } from '../models/user-update.type';
+import { IUser } from '../models/user.type';
+import { IUserUpdate } from '../models/user-update.type';
 
 export interface IPaginatedResponse<T> {
   items: T[],
@@ -18,33 +18,36 @@ export interface IPaginatedResponse<T> {
   providedIn: 'root'
 })
 export class UserService {
-  set(items: User[]) {
+  set(items: IUser[]) {
     throw new Error('Method not implemented.');
   }
 http = inject(HttpClient);
 apiConfig=inject(ApiConfigService);
 
-getUsers(): Observable<Array<User>> {
-  return this.http.get<Array<User>>(this.apiConfig.userUrl)
+getUsers(): Observable<Array<IUser
+>> {
+  return this.http.get<Array<IUser
+  >>(this.apiConfig.userUrl)
   .pipe(
-    map((users: User[]) => users.sort((a, b) => a.email.localeCompare(b.email))),
+    map((users: IUser[]) => users.sort((a, b) => a.email.localeCompare(b.email))),
     catchError(this.handleError)
   )
 }
 
-getPaginatedUsers(pageNumber: number, pageSize: number): Observable<IPaginatedResponse<User>> {
-  return this.http.get<IPaginatedResponse<User>>(`${this.apiConfig.userUrl}/Paginated?pageNumber=${pageNumber}&
+getPaginatedUsers(pageNumber: number, pageSize: number): Observable<IPaginatedResponse<IUser>> {
+  return this.http.get<IPaginatedResponse<IUser>>(`${this.apiConfig.userUrl}
+    /Paginated?pageNumber=${pageNumber}&
     pageSize=${pageSize}`);
 }
 
-getUserById(id: string): Observable<User> {
-  return this.http.get<User>(`${this.apiConfig.userUrl}/${id}`).pipe(
+getUserById(id: string): Observable<IUser> {
+  return this.http.get<IUser>(`${this.apiConfig.userUrl}/${id}`).pipe(
     catchError(this.handleError)
   );
 
 }
 
-  updateUser(id: string, user: UserUpdate): Observable<void> {
+  updateUser(id: string, user: IUserUpdate): Observable<void> {
     return this.http.put<void>(`${this.apiConfig.userUrl}/${id}`, user).pipe(
       catchError(this.handleError)
     );
