@@ -9,19 +9,11 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-login',
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCardModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatCardModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -32,21 +24,23 @@ export class LoginComponent {
   constructor() {
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-    })
+      password: ['', [Validators.required]],
+    });
   }
 
   onLogin() {
     if (this.loginForm.valid) {
       const credentials = this.loginForm.value;
 
-      this.authService.login(credentials).then(response => {
-        localStorage.setItem('authToken', response.token);
-        this.router.navigate(['']);
-      }).catch(error => {
-        console.error(error);
-      })
+      this.authService
+        .login(credentials)
+        .then(response => {
+          localStorage.setItem('authToken', response.token);
+          this.router.navigate(['']);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   }
 }
-

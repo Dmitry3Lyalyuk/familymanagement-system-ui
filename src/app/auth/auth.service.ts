@@ -3,12 +3,11 @@ import { ApiConfigService } from '../services/api-config.service';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
-
 export interface IRegisterRequest {
-userName: string;
-country: string;
-email: string;
-password: string;
+  userName: string;
+  country: string;
+  email: string;
+  password: string;
 }
 
 export interface ILoginRequest {
@@ -16,38 +15,36 @@ export interface ILoginRequest {
   password: string;
 }
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-private config = inject(ApiConfigService);
-private http = inject(HttpClient);
+  private config = inject(ApiConfigService);
+  private http = inject(HttpClient);
 
-constructor () {}
+  constructor() {}
 
-async register(userData: IRegisterRequest) {
-  try {
-    const response = await firstValueFrom(this.http.post(`${this.config.authUrl}/register`, userData));
+  async register(userData: IRegisterRequest) {
+    try {
+      const response = await firstValueFrom(this.http.post(`${this.config.authUrl}/register`, userData));
 
-    return response;
-  }
-  catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
-
-async login(credentials: ILoginRequest) {
-  try {
-    const response = await firstValueFrom(this.http.post<{token: string, refreshToken: string}>
-      (`${this.config.authUrl}/login`, credentials))
       return response;
-  } catch (error) {
-    console.error(error);
-    throw error;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
-}
+
+  async login(credentials: ILoginRequest) {
+    try {
+      const response = await firstValueFrom(this.http.post<{ token: string; refreshToken: string }>(`${this.config.authUrl}/login`, credentials));
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
 
   getToken() {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 }

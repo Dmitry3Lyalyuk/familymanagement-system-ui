@@ -4,9 +4,8 @@ import { Component, signal } from '@angular/core';
   selector: 'app-home',
   imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  placeholder=signal('Family system is coming soon!');
-
+  placeholder = signal('Family system is coming soon!');
 }

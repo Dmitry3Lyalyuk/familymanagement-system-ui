@@ -11,26 +11,18 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatCardModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   registerForm: FormGroup;
   private fb = inject(FormBuilder);
-  private authService=inject(AuthService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
   constructor() {
-    this.registerForm=this.fb.group({
+    this.registerForm = this.fb.group({
       userName: ['', [Validators.required]],
       email: ['', [Validators.required]],
       country: ['', [Validators.required]],
@@ -44,14 +36,10 @@ export class RegisterComponent {
 
       try {
         const response = await this.authService.register(formValues);
-        this.router.navigate(['/user'])
-      }
-      catch (error) {
-      }
-    }
-      else {
-        console.warn('Form is invalid');
-      }
+        this.router.navigate(['/user']);
+      } catch (error) {}
+    } else {
+      console.warn('Form is invalid');
     }
   }
-
+}
