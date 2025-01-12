@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { authGuard } from './auth/auth.guard';
+import { Component } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -22,5 +23,8 @@ export const routes: Routes = [
     path: 'users',
     component: UserComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: '**', redirectTo: 'users'
   },
 ];

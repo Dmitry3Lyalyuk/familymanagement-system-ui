@@ -28,7 +28,7 @@ export class UserComponent implements OnInit {
   pageSize = 5;
   totalCount = 0;
 
-  displayedColumns: string[] = ['id', 'userName', 'email'];
+  displayedColumns: string[] = ['id', 'userName', 'country', 'email'];
   errorMessage = '';
 
   constructor() {}
