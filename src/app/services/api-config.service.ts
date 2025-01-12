@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiConfigService {
-  private readonly apiBaseUrl: string = 'https://localhost:7122/api';
+  private readonly apiBaseUrl = 'https://localhost:7122/api';
 
-  constructor() {}
+  constructor() { }
 
   get apiUrl(): string {
     return this.apiBaseUrl;

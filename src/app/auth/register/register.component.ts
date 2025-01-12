@@ -11,7 +11,13 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatCardModule],
+  imports: [CommonModule,
+     ReactiveFormsModule,
+     MatInputModule,
+     MatFormFieldModule,
+     MatButtonModule,
+     MatIconModule,
+     MatCardModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -37,7 +43,9 @@ export class RegisterComponent {
       try {
         const response = await this.authService.register(formValues);
         this.router.navigate(['/user']);
-      } catch (error) {}
+      } catch (error) {
+
+      }
     } else {
       console.warn('Form is invalid');
     }

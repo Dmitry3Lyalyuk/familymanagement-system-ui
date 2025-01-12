@@ -13,7 +13,7 @@ export interface IPaginatedResponse<T> {
   hasPreviousPage: boolean;
   hasNextPage: boolean;
 }
-
+ 
 @Injectable({
   providedIn: 'root',
 })
