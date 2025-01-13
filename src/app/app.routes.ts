@@ -3,7 +3,6 @@ import { UserComponent } from './user/user-list/user.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
-import { authGuard } from './auth/auth.guard';
 
 
 export const routes: Routes = [
@@ -17,9 +16,9 @@ export const routes: Routes = [
       path: 'login', component: LoginComponent
   },
   {
-      path: 'user', component: UserComponent
+      path: 'users', component: UserComponent
   },
   {
-    path: '**', redirectTo: 'users'
+    path: '**', redirectTo: 'login'
   },
 ];

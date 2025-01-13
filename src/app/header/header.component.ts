@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
+
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,6 @@ import { AuthService } from '../auth/auth.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  private authService = inject(AuthService);
   onMenuClick() {
     console.log('Menu button clicked!');
   }

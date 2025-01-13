@@ -44,7 +44,7 @@ export class AuthService {
     }
   }
 
-  getToken() {
-    throw new Error('Method not implemented.');
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
   }
 }

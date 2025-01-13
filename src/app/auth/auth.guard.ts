@@ -1,18 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 export const authGuard: CanActivateFn = () => {
-  const authService = inject(AuthService);
-  const router = inject(Router);
+    const authService = inject(AuthService);
+    const router = inject(Router);
 
-  const token = authService.getToken();
+    const token = authService.getToken();
 
-  //if (token) {
-  // return true;
-  //}
+    if (token) {
+        return true;
+    }
 
-  router.navigate([`/login`]);
-  return false;
-};
+    router.navigate(['/login']);
+    return false;
+}
