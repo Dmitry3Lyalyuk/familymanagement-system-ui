@@ -27,7 +27,6 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       userName: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      country: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -38,7 +37,7 @@ export class RegisterComponent {
 
       try {
         const response = await this.authService.register(formValues);
-        this.router.navigate(['/user']);
+        this.router.navigate(['/users']);
       } catch (error) {}
     } else {
       console.warn('Form is invalid');

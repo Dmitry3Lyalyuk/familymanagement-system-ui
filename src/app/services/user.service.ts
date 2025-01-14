@@ -5,15 +5,6 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { IUser } from '../models/user.type';
 import { IUserUpdate } from '../models/user-update.type';
 
-export interface IPaginatedResponse<T> {
-  items: T[];
-  pageNumber: number;
-  totalPages: number;
-  totalCount: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -27,11 +18,6 @@ export class UserService {
       catchError(this.handleError)
     );
   }
-
-  getPaginatedUsers(pageNumber: number, pageSize: number): Observable<IPaginatedResponse<IUser>> {
-    return this.http.get<IPaginatedResponse<IUser>>(`${this.apiConfig.userUrl}/Paginated?pageNumber=${pageNumber}&pageSize=${pageSize}`);
-  }
-
   getUserById(id: string): Observable<IUser> {
     return this.http.get<IUser>(`${this.apiConfig.userUrl}/${id}`).pipe(catchError(this.handleError));
   }

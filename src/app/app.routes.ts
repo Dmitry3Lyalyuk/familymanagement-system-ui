@@ -3,12 +3,14 @@ import { UserComponent } from './user/user-list/user.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
+import { FamilyListComponent } from './family/family-list/family-list.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
   },
+
   {
     path: 'register',
     component: RegisterComponent,
@@ -22,7 +24,11 @@ export const routes: Routes = [
     component: UserComponent,
   },
   {
+    path: 'families',
+    component: FamilyListComponent,
+  },
+  {
     path: '**',
-    redirectTo: 'login',
+    redirectTo: '',
   },
 ];

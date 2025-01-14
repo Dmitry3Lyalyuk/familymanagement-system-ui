@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class ApiConfigService {
   private readonly apiBaseUrl = 'https://localhost:7122/api';
 
-  constructor() { }
+  constructor() {}
 
   get apiUrl(): string {
     return this.apiBaseUrl;
@@ -20,7 +21,7 @@ export class ApiConfigService {
     return `${this.apiBaseUrl}/Users`;
   }
 
-  get projectUrl(): string {
+  get familyUrl(): string {
     return `${this.apiBaseUrl}/Family`;
   }
 }

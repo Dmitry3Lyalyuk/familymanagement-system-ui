@@ -26,9 +26,7 @@ export class AuthService {
 
   async register(userData: IRegisterRequest) {
     try {
-      const response = await firstValueFrom(this.http.post(`${this.config.authUrl}/register`, userData));
-
-      return response;
+      return await firstValueFrom(this.http.post(`${this.config.authUrl}/register`, userData));
     } catch (error) {
       console.error(error);
       throw error;
