@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { inject, Injectable } from '@angular/core';
 import { ApiConfigService } from '../services/api-config.service';
 import { HttpClient } from '@angular/common/http';

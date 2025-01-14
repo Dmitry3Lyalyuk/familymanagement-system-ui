@@ -13,14 +13,11 @@ export interface IPaginatedResponse<T> {
   hasPreviousPage: boolean;
   hasNextPage: boolean;
 }
- 
+
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  set(items: IUser[]) {
-    throw new Error('Method not implemented.');
-  }
   http = inject(HttpClient);
   apiConfig = inject(ApiConfigService);
 
