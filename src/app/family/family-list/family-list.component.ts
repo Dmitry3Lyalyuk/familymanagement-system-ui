@@ -8,10 +8,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-family-list',
-  imports: [MatTableModule, MatIconModule, MatButtonModule, MatPaginatorModule],
+  imports: [MatTableModule, MatIconModule, MatButtonModule, MatPaginatorModule, CommonModule],
   templateUrl: './family-list.component.html',
   styleUrl: './family-list.component.css',
 })

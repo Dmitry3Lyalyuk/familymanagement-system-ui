@@ -1,24 +1,24 @@
-<mat-table [dataSource]="families()" class="mat-elevation-z9">
+<mat-table [dataSource]="families()" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-    <mat-cell *matColumnDef="let family"> {{ family.id }}</mat-cell>
+    <mat-cell *matCellDef="let families"> {{ families.id }}</mat-cell>
   </ng-container>
+
   <ng-container matColumnDef="category">
     <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-    <mat-cell *matColumnDef="let family"> {{ family.category }}</mat-cell>
+    <mat-cell *matCellDef="let families"> {{ families.category }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matColumnDef="let family"> {{ family.name }}</mat-cell>
+    <mat-cell *matCellDef="let families"> {{ families.name }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="brand">
     <mat-header-cell *matHeaderCellDef> Brand </mat-header-cell>
-    <mat-cell *matColumnDef="let family"> {{ family.brand }}</mat-cell>
+    <mat-cell *matCellDef="let families"> {{ families.brand }}</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColuumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColuumns"></mat-row>
 </mat-table>
-
 <mat-paginator [length]="totalCount" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 15]" aria-label="Select page" (page)="onPageChanged($event)">
 </mat-paginator>

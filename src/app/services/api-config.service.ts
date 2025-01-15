@@ -22,6 +22,6 @@ export class ApiConfigService {
   }
 
   get familyUrl(): string {
-    return `${this.apiBaseUrl}/Family`;
+    return `${this.apiBaseUrl}/Families`;
   }
 }
