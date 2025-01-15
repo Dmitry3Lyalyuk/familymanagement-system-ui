@@ -1,4 +1,5 @@
 export interface IFamily {
+  id: string;
   category: Category;
   name: string;
   brand: string;

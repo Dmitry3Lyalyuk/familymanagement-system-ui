@@ -2,21 +2,18 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ApiConfigService } from './api-config.service';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { IFamily } from '../models/family';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FamilyListService {
+export class FamilyService {
   http = inject(HttpClient);
   apiConfig = inject(ApiConfigService);
 
   getFamily(): Observable<IFamily[]> {
-    return this.http.get<IFamily[]>(this.apiConfig.familyUrl).pipe(
-      map((family: IFamily[]) => family.sort((a, b) => a.name.localeCompare(b.name))),
-      catchError(this.handleError)
-    );
+    return this.http.get<IFamily[]>(this.apiConfig.familyUrl).pipe(catchError(this.handleError));
   }
   constructor() {}
   private handleError(error: unknown) {

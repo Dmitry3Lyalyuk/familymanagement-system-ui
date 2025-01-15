@@ -1,23 +1,32 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FamilyListService } from '../../services/familyservice';
+import { FamilyService } from '../../services/family.service';
 import { SnakbarService } from '../../services/snakbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { IFamily } from '../../models/family';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-family-list',
-  imports: [],
+  imports: [MatTableModule, MatIconModule, MatButtonModule, MatPaginatorModule],
   templateUrl: './family-list.component.html',
   styleUrl: './family-list.component.css',
 })
 export class FamilyListComponent implements OnInit {
-  familyServise = inject(FamilyListService);
+  familyServise = inject(FamilyService);
   snackbar = inject(SnakbarService);
   dialog = inject(MatDialog);
 
   families = signal<IFamily[]>([]);
+  pageNumber = 0;
+  pageSize = 5;
+  totalCount = 0;
+
   errorMessage = '';
+  displayedColuumns: string[] = ['id', 'category', 'name', 'brand', 'action'];
 
   constructor() {}
   ngOnInit(): void {
@@ -35,5 +44,11 @@ export class FamilyListComponent implements OnInit {
         this.snackbar.openSnackBar(err, 'close');
       },
     });
+  }
+
+  onPageChanged(event: PageEvent): void {
+    this.pageSize = event.pageSize;
+    this.pageNumber = event.pageIndex + 1;
+    this.loadFamily();
   }
 }
