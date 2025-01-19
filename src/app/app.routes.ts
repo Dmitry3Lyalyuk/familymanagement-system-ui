@@ -4,31 +4,27 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { FamilyListComponent } from './family/family-list/family-list.component';
+import { authGuard } from './auth/auth.guard';
+
 
 export const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent,
-  },
-
-  {
-    path: 'register',
-    component: RegisterComponent,
+    path: '', component: HomeComponent
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'register', component: RegisterComponent
   },
   {
-    path: 'users',
-    component: UserComponent,
+    path: 'login', component: LoginComponent
   },
   {
-    path: 'families',
-    component: FamilyListComponent,
+    path: 'users', component: UserComponent,
+    canActivate: [authGuard]
   },
   {
-    path: '**',
-    redirectTo: '',
+    path: 'families', component: FamilyListComponent
+  },
+  {
+    path: '**', redirectTo: ''
   },
 ];

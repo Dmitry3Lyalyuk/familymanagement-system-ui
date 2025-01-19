@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../../services/user.service';
 import { SnakbarService } from '../../services/snakbar.service';
-import { IUser } from '../../models/user.type';
+import { IUser } from '../../models/user';
 
 @Component({
   selector: 'app-edit-user',
@@ -17,7 +17,7 @@ import { IUser } from '../../models/user.type';
 })
 export class EditUserComponent {
   userService = inject(UserService);
-  smackbar = inject(SnakbarService);
+  snackbar = inject(SnakbarService);
 
   user: IUser;
 
@@ -39,7 +39,7 @@ export class EditUserComponent {
         next: () => {
           this.dialogRef.close(this.user);
         },
-        error: err => this.smackbar.openSnackBar(err, 'close'),
+        error: err => this.snackbar.openSnackBar(err, 'close'),
       });
   }
 

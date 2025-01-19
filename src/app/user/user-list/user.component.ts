@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { SnakbarService } from '../../services/snakbar.service';
 import { MatDialog } from '@angular/material/dialog';
-import { IUser } from '../../models/user.type';
+import { Country, IUser } from '../../models/user';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
@@ -24,14 +24,20 @@ export class UserComponent implements OnInit {
   dialog = inject(MatDialog);
 
   users = signal<IUser[]>([]);
-  pageNumber = 0;
-  pageSize = 5;
-  totalCount = 0;
+  pageIndex = signal<number>(0);
+  pageSize = signal<number>(0);
+
+  paginatedUsers = computed(() => {
+    const startIndex = this.pageIndex() * this.pageSize();
+    const endIndex = startIndex + this.pageSize();
+    return this.users().slice(startIndex, endIndex)
+
+  })
 
   displayedColumns: string[] = ['id', 'userName', 'country', 'email', 'actions'];
   errorMessage = '';
 
-  constructor() {}
+  constructor() { }
   ngOnInit(): void {
     this.loadUsers();
   }
@@ -40,6 +46,8 @@ export class UserComponent implements OnInit {
     this.userService.getUsers().subscribe({
       next: data => {
         this.users.set(data);
+
+
       },
       error: err => {
         this.errorMessage = err;
@@ -89,8 +97,10 @@ export class UserComponent implements OnInit {
   }
 
   onPageChanged(event: PageEvent): void {
-    this.pageSize = event.pageSize;
-    this.pageNumber = event.pageIndex + 1;
-    this.loadUsers();
+    this.pageIndex.set(event.pageIndex);
+    this.pageSize.set(event.pageSize);
+  }
+  getCountryStr(country: Country): string {
+    return Country[country];
   }
 }

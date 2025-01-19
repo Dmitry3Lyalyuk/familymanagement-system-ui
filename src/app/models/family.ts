@@ -4,7 +4,7 @@ export interface IFamily {
   name: string;
   brand: string;
 }
-enum Category {
+ export enum Category {
   Annotation,
   Profile,
   Wall,
