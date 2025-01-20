@@ -14,6 +14,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { EditUserComponent } from '../../user/edit-user/edit-user.component';
 import { EditFamilyComponent } from '../edit-family/edit-family.component';
+import { IFamilyCreate } from '../../models/family-create';
+import { CreateFamilyComponent } from '../create-family/create-family.component';
 
 @Component({
   selector: 'app-family-list',
@@ -53,6 +55,17 @@ export class FamilyListComponent implements OnInit {
         this.snackbar.openSnackBar(err, 'close');
       },
     });
+  }
+  onCreateFamily(newFamily: IFamilyCreate): void {
+    const dialogref = this.dialog.open(CreateFamilyComponent, {
+      data: newFamily,
+    });
+    dialogref.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Family data after creation', result);
+        this.loadFamily();
+      }
+    })
   }
   onEditFamily(family: IFamily): void {
     const dialogRef = this.dialog.open(EditFamilyComponent, {

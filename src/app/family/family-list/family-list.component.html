@@ -10,6 +10,7 @@
       <mat-card-content class="brand"> Brand: {{family.brand}} </mat-card-content>
     </mat-card-header>
     <mat-card-actions>
+      <button mat-stroked-button (click)="onCreateFamily(family)"><mat-icon>create</mat-icon>Create</button>
       <button mat-stroked-button (click)="onEditFamily(family)"><mat-icon>edit</mat-icon>Edit</button>
       <button mat-stroked-button (click)="onDeleteFamily(family.id)"><mat-icon>delete</mat-icon>Delete</button>
     </mat-card-actions>

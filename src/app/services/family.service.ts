@@ -5,6 +5,7 @@ import { ApiConfigService } from './api-config.service';
 import { catchError, Observable, throwError } from 'rxjs';
 import { IFamily } from '../models/family';
 import { IFamilyUpdate } from '../models/family-update';
+import { IFamilyCreate } from '../models/family-create';
 
 
 @Injectable({
@@ -16,6 +17,9 @@ export class FamilyService {
 
   getFamily(): Observable<IFamily[]> {
     return this.http.get<IFamily[]>(this.apiConfig.familyUrl).pipe(catchError(this.handleError));
+  }
+  createFamily(newFamily: IFamilyCreate): Observable<void> {
+    return this.http.post<void>(`${this.apiConfig.familyUrl}`, newFamily);
   }
   updateFamily(id: string, family: IFamilyUpdate): Observable<void> {
     return this.http.put<void>(`${this.apiConfig.familyUrl}/${id}`, family).pipe(catchError(this.handleError));

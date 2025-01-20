@@ -46,8 +46,6 @@ export class UserComponent implements OnInit {
     this.userService.getUsers().subscribe({
       next: data => {
         this.users.set(data);
-
-
       },
       error: err => {
         this.errorMessage = err;
@@ -62,12 +60,12 @@ export class UserComponent implements OnInit {
       data: user,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('User data after edit', result);
         this.loadUsers();
       }
-    });
+    })
   }
 
   onDeleteUser(userId: string): void {
