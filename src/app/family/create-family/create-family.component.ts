@@ -16,53 +16,54 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-create-family',
-  imports: [FormsModule, CommonModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatButtonModule,
-    CommonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatCardModule
+  imports: [
+    FormsModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    CommonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
   ],
   templateUrl: './create-family.component.html',
-  styleUrl: './create-family.component.css'
+  styleUrl: './create-family.component.css',
 })
 export class CreateFamilyComponent {
   familyService = inject(FamilyService);
   snackbar = inject(SnakbarService);
-  fb = inject(FormBuilder)
-  router = inject(Router)
-  dialogRef = inject(MatDialogRef)
+  fb = inject(FormBuilder);
+  router = inject(Router);
+  dialogRef = inject(MatDialogRef);
 
   createFamilyForm: FormGroup;
-  newFamily: IFamilyCreate | undefined;
 
   constructor() {
     this.createFamilyForm = this.fb.group({
       Category: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-      brand: ['', [Validators.required]]
-    })
+      Name: ['', [Validators.required]],
+      brand: ['', [Validators.required]],
+    });
   }
-  async onCreationFamily(): Promise<void> {
+  onCreationFamily() {
     if (this.createFamilyForm.valid) {
       const formValues: IFamilyCreate = this.createFamilyForm.value;
 
       try {
         this.familyService.createFamily(formValues);
-        this.router.navigate(['/family']);
+        this.router.navigate(['/families']);
+        this.snackbar.openSnackBar('Family created successfully', 'Close');
       } catch (error) { }
     } else {
       console.warn('Form is invalid');
     }
   }
 
-  // onCreationFamily(): void {
-  //   if (this.createFamilyForm.valid) {
-  //     const newFamily: IFamilyCreate = this.createFamilyForm.value;
-  //     this.familyService.createFamily(newFamily).subscribe({
-  //       next: () => {
-  //         this.dialogRef.close(this.newFamily);
-  //       },
-  //       error: err => this.snackbar.openSnackBar(err, 'close'),
-  //     });
-  //   }
-  // }
   onClose(): void {
     this.dialogRef.close();
   }

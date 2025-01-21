@@ -65,7 +65,7 @@ export class FamilyListComponent implements OnInit {
         console.log('Family data after creation', result);
         this.loadFamily();
       }
-    })
+    });
   }
   onEditFamily(family: IFamily): void {
     const dialogRef = this.dialog.open(EditFamilyComponent, {

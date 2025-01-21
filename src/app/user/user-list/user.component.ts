@@ -65,7 +65,7 @@ export class UserComponent implements OnInit {
         console.log('User data after edit', result);
         this.loadUsers();
       }
-    })
+    });
   }
 
   onDeleteUser(userId: string): void {

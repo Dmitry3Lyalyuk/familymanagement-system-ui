@@ -1,8 +1,10 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-empty-function */
 
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ApiConfigService } from './api-config.service';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, firstValueFrom, Observable, throwError } from 'rxjs';
 import { IFamily } from '../models/family';
 import { IFamilyUpdate } from '../models/family-update';
 import { IFamilyCreate } from '../models/family-create';
@@ -18,8 +20,8 @@ export class FamilyService {
   getFamily(): Observable<IFamily[]> {
     return this.http.get<IFamily[]>(this.apiConfig.familyUrl).pipe(catchError(this.handleError));
   }
-  createFamily(newFamily: IFamilyCreate): Observable<void> {
-    return this.http.post<void>(`${this.apiConfig.familyUrl}`, newFamily);
+  createFamily(newFamily: IFamilyCreate) {
+    return firstValueFrom(this.http.post(`${this.apiConfig.familyUrl}`, newFamily));
   }
   updateFamily(id: string, family: IFamilyUpdate): Observable<void> {
     return this.http.put<void>(`${this.apiConfig.familyUrl}/${id}`, family).pipe(catchError(this.handleError));
