@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
-import { EditUserComponent } from '../../user/edit-user/edit-user.component';
 import { EditFamilyComponent } from '../edit-family/edit-family.component';
 import { IFamilyCreate } from '../../models/family-create';
 import { CreateFamilyComponent } from '../create-family/create-family.component';

@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../../services/user.service';
 import { SnakbarService } from '../../services/snakbar.service';
 import { IUser } from '../../models/user';
+import { Country } from '../../models/user-update';
 
 @Component({
   selector: 'app-edit-user',
@@ -32,14 +33,14 @@ export class EditUserComponent {
     this.userService
       .updateUser(this.user.id, {
         id: this.user.id,
-        country: this.user.country,
+        country: this.user.country as Country,
         email: this.user.email,
       })
       .subscribe({
         next: () => {
           this.dialogRef.close(this.user);
         },
-        error: err => this.snackbar.openSnackBar(err, 'close'),
+        error: err => this.snackbar.showError(err),
       });
   }
 

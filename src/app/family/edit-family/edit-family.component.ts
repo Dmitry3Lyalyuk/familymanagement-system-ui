@@ -33,7 +33,7 @@ export class EditFamilyComponent {
       .updateFamily(this.family.id, {
         id: this.family.id,
         name: this.family.name,
-        brand: this.family.brand
+        brand: this.family.brand,
       })
       .subscribe({
         next: () => {

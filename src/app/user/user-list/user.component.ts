@@ -30,8 +30,7 @@ export class UserComponent implements OnInit {
   paginatedUsers = computed(() => {
     const startIndex = this.pageIndex() * this.pageSize();
     const endIndex = startIndex + this.pageSize();
-    return this.users().slice(startIndex, endIndex)
-
+    return this.users().slice(startIndex, endIndex);
   })
 
   displayedColumns: string[] = ['id', 'userName', 'country', 'email', 'actions'];
@@ -60,7 +59,7 @@ export class UserComponent implements OnInit {
       data: user,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('User data after edit', result);
         this.loadUsers();

@@ -1,7 +1,7 @@
 export interface IUser {
   id: string;
   userName: string;
-  country: string;
+  country: Country;
   email: string;
 }
 export enum Country {
@@ -11,5 +11,5 @@ export enum Country {
   Germany,
   Spain,
   Turkey,
-  Belarus
+  Belarus,
 }

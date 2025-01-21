@@ -5,26 +5,36 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { FamilyListComponent } from './family/family-list/family-list.component';
 import { authGuard } from './auth/auth.guard';
-
+import { ErrorPageComponent } from './core/error-page/error-page.component';
 
 export const routes: Routes = [
   {
-    path: '', component: HomeComponent
+    path: '',
+    component: HomeComponent,
   },
   {
-    path: 'register', component: RegisterComponent
+    path: 'register',
+    component: RegisterComponent,
   },
   {
-    path: 'login', component: LoginComponent
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path: 'users', component: UserComponent,
-    canActivate: [authGuard]
+    path: 'users',
+    component: UserComponent,
+    canActivate: [authGuard],
   },
   {
-    path: 'families', component: FamilyListComponent
+    path: 'families',
+    component: FamilyListComponent,
   },
   {
-    path: '**', redirectTo: ''
+    path: 'error',
+    component: ErrorPageComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
