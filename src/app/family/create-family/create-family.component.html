@@ -17,8 +17,11 @@
         <mat-label>Brand</mat-label>
         <input matInput formControlName="brand" required />
       </mat-form-field>
-      <button mat-raised-button (click)="onClose()">Cancel</button>
-      <button mat-raised-button [disabled]="createFamilyForm.invalid">Create</button>
     </form>
   </mat-card-content>
 </mat-card>
+
+<mat-dialog-actions>
+  <button mat-raised-button type="button" (click)="onClose()">Cancel</button>
+  <button mat-raised-button type="submit" [disabled]="createFamilyForm.invalid">Create</button>
+</mat-dialog-actions>

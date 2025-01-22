@@ -15,11 +15,15 @@ import { MatCardModule } from '@angular/material/card';
 import { EditFamilyComponent } from '../edit-family/edit-family.component';
 import { IFamilyCreate } from '../../models/family-create';
 import { CreateFamilyComponent } from '../create-family/create-family.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-family-list',
   imports: [MatTableModule, MatIconModule, MatButtonModule, MatPaginatorModule, CommonModule,
-    MatButtonModule, MatTooltipModule, MatCardModule, MatButtonModule],
+    MatButtonModule, MatTooltipModule, MatCardModule, MatButtonModule,
+    MatFormFieldModule, MatSelectModule, MatInputModule],
 
   templateUrl: './family-list.component.html',
   styleUrl: './family-list.component.css',

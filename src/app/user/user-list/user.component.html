@@ -9,7 +9,7 @@
   </ng-container>
   <ng-container matColumnDef="country">
     <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{ getCountryStr(user.country) }}</mat-cell>
+    <mat-cell *matCellDef="let user"> {{user.country}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="email">
     <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
