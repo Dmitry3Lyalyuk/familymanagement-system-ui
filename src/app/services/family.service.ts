@@ -21,8 +21,14 @@ export class FamilyService {
     return this.http.get<IFamily[]>(this.apiConfig.familyUrl).pipe(catchError(this.handleError));
   }
   createFamily(newFamily: IFamilyCreate) {
-    return firstValueFrom(this.http.post(`${this.apiConfig.familyUrl}`, newFamily));
+    try {
+      return firstValueFrom(this.http.post(`${this.apiConfig.familyUrl}`, newFamily));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
+
   updateFamily(id: string, family: IFamilyUpdate): Observable<void> {
     return this.http.put<void>(`${this.apiConfig.familyUrl}/${id}`, family).pipe(catchError(this.handleError));
   }

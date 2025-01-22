@@ -50,6 +50,7 @@ export class CreateFamilyComponent {
       brand: ['', [Validators.required]],
     });
   }
+
   onCreationFamily() {
     if (this.createFamilyForm.valid) {
       const formValues: IFamilyCreate = this.createFamilyForm.value;
