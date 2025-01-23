@@ -6,6 +6,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { FamilyListComponent } from './family/family-list/family-list.component';
 import { authGuard } from './auth/auth.guard';
 import { ErrorPageComponent } from './core/error-page/error-page.component';
+import { ProfileComponent } from './core/profile-page/profile.component';
+import { UserSettingsComponent } from './core/user-settings/user-settings.component';
+import { UserHelpComponent } from './core/user-help/user-help.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +33,18 @@ export const routes: Routes = [
     component: FamilyListComponent,
   },
   {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'settings',
+    component: UserSettingsComponent,
+  },
+  {
+    path: 'help',
+    component: UserHelpComponent,
+  },
+  {
     path: 'error',
     component: ErrorPageComponent,
   },
@@ -38,3 +53,4 @@ export const routes: Routes = [
     redirectTo: '',
   },
 ];
+

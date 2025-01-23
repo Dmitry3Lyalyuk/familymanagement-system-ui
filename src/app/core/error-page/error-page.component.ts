@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -8,7 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './error-page.component.css',
 })
 export class ErrorPageComponent {
+
   goBack(): void {
     window.history.back();
   }
 }
+

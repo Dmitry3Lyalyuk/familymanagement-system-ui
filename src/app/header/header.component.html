@@ -39,7 +39,7 @@
     <mat-divider></mat-divider>
     <button mat-menu-item [routerLink]="'/profile'">Manage account</button>
     <mat-divider></mat-divider>
-    <button mat-menu-item>Help</button>
-    <button mat-menu-item>Settings</button>
+    <button mat-menu-item [routerLink]="'/help'">Help</button>
+    <button mat-menu-item [routerLink]="'/settings'">Settings</button>
     <button mat-menu-item (click)="onLogout()">Log out</button>
   </mat-menu>
