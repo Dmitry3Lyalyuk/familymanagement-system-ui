@@ -11,5 +11,11 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.configPath": ".prettierrc.json",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }

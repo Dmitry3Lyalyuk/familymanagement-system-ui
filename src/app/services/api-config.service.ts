@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfigService {
-  private readonly apiBaseUrl: string = 'https://localhost:7122/api';
+  private readonly apiBaseUrl = 'https://localhost:7122/api';
 
-  constructor() {}
+  constructor() { }
 
   get apiUrl(): string {
     return this.apiBaseUrl;
@@ -21,7 +21,11 @@ export class ApiConfigService {
     return `${this.apiBaseUrl}/Users`;
   }
 
-  get projectUrl(): string {
-    return `${this.apiBaseUrl}/Family`;
+  get familyUrl(): string {
+    return `${this.apiBaseUrl}/Families`;
   }
+  get profileUrl(): string {
+    return `${this.apiBaseUrl}/Profile`;
+  }
+
 }

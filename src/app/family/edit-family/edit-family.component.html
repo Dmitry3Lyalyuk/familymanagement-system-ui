@@ -1,0 +1,17 @@
+<mat-dialog-content>
+  <ng-container *ngIf="family">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="family.name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Brand</mat-label>
+      <input matInput [(ngModel)]="family.brand" />
+    </mat-form-field>
+  </ng-container>
+  <mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="onClose()">Cancel</button>
+      <button mat-button (click)="onSave()">Save</button>
+    </mat-dialog-actions>
+  </mat-dialog-content></mat-dialog-content>

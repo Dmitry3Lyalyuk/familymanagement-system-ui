@@ -1,0 +1,24 @@
+<div class="create-family">
+  <div>
+    <button mat-stroked-button (click)="onCreateFamily(families.prototype)"><mat-icon>add</mat-icon>Family</button>
+    <p></p>
+
+    <div class=" class-conteiner">
+
+      <mat-card class="example" appearance="outlined" *ngFor="let family of families()">
+
+        <mat-card-header>
+          <mat-card-title class="name"> Name: {{family.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-header>
+          <mat-card-subtitle class="category"> Category: {{family.category}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-header>
+          <mat-card-content class="brand"> Brand: {{family.brand}} </mat-card-content>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-stroked-button (click)="onEditFamily(family)"><mat-icon>edit</mat-icon>Edit</button>
+          <button mat-stroked-button (click)="onDeleteFamily(family.id)"><mat-icon>delete</mat-icon>Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>

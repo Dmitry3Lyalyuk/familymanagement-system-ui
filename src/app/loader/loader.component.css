@@ -12,6 +12,6 @@
 }
 
 .mat-spinner {
-  width: 1rem; /* Пример: 1rem = 16px, это эквивалентно 48px */
-  height: 1rem;
+  width: 2rem; /* Пример: 1rem = 16px, это эквивалентно 48px */
+  height: 2rem;
 }

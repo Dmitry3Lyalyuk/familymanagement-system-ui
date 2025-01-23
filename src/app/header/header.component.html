@@ -1,29 +1,45 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
   <mat-toolbar-row>
-    <button mat-icon-button [matMenuTriggerFor]="mainMenu">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span [routerLink]="''">Management board</span>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span [routerLink]="''"> BIMFactory</span>
+        <span class="example-spacer"></span>
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example construction"> handyman </mat-icon>
+      </mat-toolbar-row>
+    </mat-toolbar>
     <span class="spacer"></span>
-    <button mat-button [routerLink]="'/register'">Register</button>
-    <button mat-button [routerLink]="'/login'">Login</button>
-    <button mat-icon-button>
-      <mat-icon>account_circle</mat-icon>
+    <ng-container *ngIf="!isLoggedIn()">
+      <button mat-button [routerLink]="'/register'">Register</button>
+      <button mat-button [routerLink]="'/login'">Log in</button>
+    </ng-container>
+    <button mat-icon-button [matMenuTriggerFor]="userMenu" *ngIf="isLoggedIn()">
+      <mat-icon class="user-icon-large">co_present</mat-icon>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-menu #mainMenu="matMenu">
-  <button mat-menu-item [routerLink]="'/users'">
-    <mat-icon>pageview</mat-icon>
-    <span>Users</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>help</mat-icon>
-    <span>Help</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>settings</mat-icon>
-    <span>Settings</span>
-  </button>
-</mat-menu>
+<mat-toolbar color="second">
+  <mat-toolbar-row>
+    <span>
+      <button mat-raised-button [routerLink]="'/users'" matTooltip="Go to users list"> Users
+      </button>
+      <button mat-raised-button [routerLink]="'/families'" matTooltip="Choose families"> Families
+      </button></span>
+  </mat-toolbar-row>
+
+
+
+  <mat-menu #userMenu="matMenu">
+    <div class="user-menu-header">
+      <img src="channels4_profile.jpg" alt="channels4_profile" style="width: 100%; height: auto;" />
+      <div class="user-info">
+        <div class="user-name">Unidentified Raccoon</div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <button mat-menu-item [routerLink]="'/profile'">Manage account</button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item [routerLink]="'/help'">Help</button>
+    <button mat-menu-item [routerLink]="'/settings'">Settings</button>
+    <button mat-menu-item (click)="onLogout()">Log out</button>
+  </mat-menu>

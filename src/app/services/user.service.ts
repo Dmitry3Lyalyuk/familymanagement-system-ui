@@ -2,25 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ApiConfigService } from './api-config.service';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { IUser } from '../models/user.type';
-import { IUserUpdate } from '../models/user-update.type';
+import { IUser } from '../models/user';
+import { IUserUpdate } from '../models/user-update';
 
-export interface IPaginatedResponse<T> {
+export interface IPaginatedRespose<T> {
   items: T[];
-  pageNumber: number;
-  totalPages: number;
-  totalCount: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
+  pageNumber: number,
+  totalPages: number,
+  totalCount: number,
+  hasPreviousPage: boolean,
+  hasNextPage: boolean
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  set(items: IUser[]) {
-    throw new Error('Method not implemented.');
-  }
   http = inject(HttpClient);
   apiConfig = inject(ApiConfigService);
 
@@ -29,10 +26,6 @@ export class UserService {
       map((users: IUser[]) => users.sort((a, b) => a.email.localeCompare(b.email))),
       catchError(this.handleError)
     );
-  }
-
-  getPaginatedUsers(pageNumber: number, pageSize: number): Observable<IPaginatedResponse<IUser>> {
-    return this.http.get<IPaginatedResponse<IUser>>(`${this.apiConfig.userUrl}/Paginated?pageNumber=${pageNumber}&pageSize=${pageSize}`);
   }
 
   getUserById(id: string): Observable<IUser> {

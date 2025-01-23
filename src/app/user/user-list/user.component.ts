@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { IPaginatedResponse, UserService } from '../../services/user.service';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { SnakbarService } from '../../services/snakbar.service';
 import { MatDialog } from '@angular/material/dialog';
-import { IUser } from '../../models/user.type';
+import { Country, IUser } from '../../models/user';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -24,26 +24,32 @@ export class UserComponent implements OnInit {
   dialog = inject(MatDialog);
 
   users = signal<IUser[]>([]);
-  pageNumber = 0;
-  pageSize = 5;
-  totalCount = 0;
+  pageIndex = signal<number>(0);
+  pageSize = signal<number>(5);
 
-  displayedColumns: string[] = ['id', 'userName', 'email'];
+  paginatedUsers = computed(() => {
+    const startIndex = this.pageIndex() * this.pageSize();
+    const endIndex = startIndex + this.pageSize();
+    return this.users().slice(startIndex, endIndex);
+  })
+
+  displayedColumns: string[] = ['id', 'userName', 'country', 'email', 'actions'];
   errorMessage = '';
 
-  constructor() {}
+  constructor() { }
   ngOnInit(): void {
     this.loadUsers();
   }
 
   loadUsers(): void {
-    this.userService.getPaginatedUsers(this.pageNumber, this.pageSize).subscribe({
-      next: (response: IPaginatedResponse<IUser>) => {
-        this.users.set(response.items);
-        this.totalCount = response.totalCount;
+    this.userService.getUsers().subscribe({
+      next: data => {
+        this.users.set(data);
       },
       error: err => {
-        console.error(err);
+        this.errorMessage = err;
+        console.error('Error occured!', err);
+        this.snackbar.openSnackBar(err, 'close');
       },
     });
   }
@@ -75,11 +81,12 @@ export class UserComponent implements OnInit {
         this.userService.deleteUser(userId).subscribe({
           next: () => {
             console.log('user deleted');
+            this.snackbar.showError('test');
             this.loadUsers;
           },
           error: err => {
             console.log('Error occured whilst deleting a user', err);
-            this.snackbar.openSnackBar(err, 'OK');
+            this.snackbar.showError;
           },
         });
       }
@@ -87,8 +94,10 @@ export class UserComponent implements OnInit {
   }
 
   onPageChanged(event: PageEvent): void {
-    this.pageSize = event.pageSize;
-    this.pageNumber = event.pageIndex + 1;
-    this.loadUsers();
+    this.pageIndex.set(event.pageIndex);
+    this.pageSize.set(event.pageSize);
+  }
+  getCountryStr(country: Country): string {
+    return Country[country];
   }
 }

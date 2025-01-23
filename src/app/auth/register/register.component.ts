@@ -1,3 +1,5 @@
+/* eslint-disable no-empty */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -24,8 +26,7 @@ export class RegisterComponent {
   constructor() {
     this.registerForm = this.fb.group({
       userName: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      country: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -35,9 +36,9 @@ export class RegisterComponent {
       const formValues: IRegisterRequest = this.registerForm.value;
 
       try {
-        const response = await this.authService.register(formValues);
+        await this.authService.register(formValues);
         this.router.navigate(['/user']);
-      } catch (error) {}
+      } catch (error) { }
     } else {
       console.warn('Form is invalid');
     }

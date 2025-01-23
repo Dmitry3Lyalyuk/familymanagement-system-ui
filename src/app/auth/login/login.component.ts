@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -31,16 +30,13 @@ export class LoginComponent {
   onLogin() {
     if (this.loginForm.valid) {
       const credentials = this.loginForm.value;
-
-      this.authService
-        .login(credentials)
-        .then(response => {
-          localStorage.setItem('authToken', response.token);
-          this.router.navigate(['']);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+      try {
+        const responce = this.authService.login(credentials);
+        console.log('Login successful', responce);
+        this.router.navigate(['']);
+      } catch (error) {
+        console.error('Login failed', error);
+      }
     }
   }
 }
