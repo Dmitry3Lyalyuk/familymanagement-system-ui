@@ -86,8 +86,8 @@ export class FamilyListComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '500px',
       data: {
-        title: 'Confirm delection',
-        message: 'Are you sure you want to delete this user?',
+        title: 'Confirm deletion',
+        message: 'Are you sure you want to delete this family?',
       },
     });
     dialogRef.afterClosed().subscribe((result: Boolean) => {

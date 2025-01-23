@@ -35,6 +35,7 @@ export class FamilyService {
   deleteFamily(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiConfig.familyUrl}/${id}`).pipe(catchError(this.handleError));
   }
+
   constructor() { }
   private handleError(error: unknown) {
     console.error('Error occured!', error);

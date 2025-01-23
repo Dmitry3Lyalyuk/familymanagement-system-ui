@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
 
   users = signal<IUser[]>([]);
   pageIndex = signal<number>(0);
-  pageSize = signal<number>(0);
+  pageSize = signal<number>(5);
 
   paginatedUsers = computed(() => {
     const startIndex = this.pageIndex() * this.pageSize();

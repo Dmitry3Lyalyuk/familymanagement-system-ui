@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-create-family',
@@ -30,6 +31,7 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatSelectModule,
   ],
   templateUrl: './create-family.component.html',
   styleUrl: './create-family.component.css',
@@ -40,6 +42,7 @@ export class CreateFamilyComponent {
   fb = inject(FormBuilder);
   router = inject(Router);
   dialogRef = inject(MatDialogRef);
+
 
   createFamilyForm: FormGroup;
 
@@ -59,6 +62,7 @@ export class CreateFamilyComponent {
         this.familyService.createFamily(formValues);
         this.router.navigate(['/families']);
         this.snackbar.openSnackBar('Family created successfully', 'Close');
+
       } catch (error) { }
     } else {
       console.warn('Form is invalid');
