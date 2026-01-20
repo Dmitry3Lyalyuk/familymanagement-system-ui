@@ -1,59 +1,60 @@
-# FamilymanagementSystemUi
+# Contact Management System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+A full-stack application for managing personal contacts, featuring a robust **ASP.NET Core Web API** backend and a reactive **Vue.js 3** frontend.
 
-## Development server
+## 🚀 Overview
 
-To start a local development server, run:
+This project provides a comprehensive solution for CRUD (Create, Read, Update, Delete) operations on contact records. It is designed with a clear separation of concerns, utilizing modern patterns like CQRS on the backend and the Composition API on the frontend.
 
-```bash
-ng serve
-```
+## 🛠 Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Backend
+- **Framework**: .NET 6.0+ / ASP.NET Core
+- **Pattern**: CQRS (Command Query Responsibility Segregation)
+- **Library**: MediatR (for decoupled messaging)
+- **Documentation**: Swagger/OpenAPI
 
-## Code scaffolding
+### Frontend
+- **Framework**: Vue.js 3 (Composition API)
+- **HTTP Client**: Axios
+- **Validation**: Custom JavaScript/TypeScript validation logic
+- **Styling**: Scoped CSS with responsive table layouts
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📋 Features & Requirements
 
-```bash
-ng generate component component-name
-```
+As per the technical specifications, the application implements:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1.  **Contact Entity**: Includes `Name`, `MobilePhone`, `JobTitle`, `BirthDate`, and `Email`.
+2.  **CRUD Operations**:
+    *   **Read**: Displays a formatted list of contacts in a responsive table.
+    *   **Create**: (Backend ready) Endpoint for adding new entries.
+    *   **Update**: Allows inline editing of `MobilePhone` and `JobTitle`.
+    *   **Delete**: Confirmation-based removal of records.
+3.  **Client-Side Validation**: Integrated JavaScript validation (via `ContactValidator`) to ensure data integrity before API calls.
+4.  **Notifications**: A custom toast system to provide real-time feedback for success and error states.
 
-```bash
-ng generate --help
-```
+## 📡 API Architecture (Backend)
 
-## Building
+The backend follows the CQRS pattern to separate read and write logic:
 
-To build the project run:
+- **GET `/api/contacts`**: Fetches all contacts via `GetAllContactsQuery`.
+- **POST `/api/contacts`**: Creates contacts via `CreateContactCommand`.
+- **PUT `/api/contacts/{id}`**: Updates specific fields via `UpdateContactCommand`.
+- **DELETE `/api/contacts/{id}`**: Removes a record via `DeleteContactCommand`.
 
-```bash
-ng build
-```
+## 💻 Frontend Implementation (Vue.js)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The UI is built with a focus on user experience and real-time interaction:
 
-## Running unit tests
+*   **Reactive State**: Uses `ref` for managing contact data, loading states, and error handling.
+*   **Inline Editing**: While the UI supports inline updates for efficiency, it is designed to be easily extended into modal/popup windows as per requirements.
+*   **Validation**: Every update is passed through `validateContact()` to ensure the phone number and job title meet the required formats.
+*   **Feedback**: A `transition-group` based notification system displays messages for 4 seconds before fading out.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## ⚙️ Setup and Installation
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Backend Setup
+1. Navigate to the server project folder.
+2. Restore NuGet packages:
+   ```bash
+   dotnet restore
