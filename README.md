@@ -9,7 +9,7 @@ This project provides a comprehensive solution for CRUD (Create, Read, Update, D
 ## 🛠 Tech Stack
 
 ### Backend
-- **Framework**: .NET 6.0+ / ASP.NET Core
+- **Framework**: .NET 8.0 / ASP.NET Core
 - **Pattern**: CQRS (Command Query Responsibility Segregation)
 - **Library**: MediatR (for decoupled messaging)
 - **Documentation**: Swagger/OpenAPI
@@ -17,7 +17,7 @@ This project provides a comprehensive solution for CRUD (Create, Read, Update, D
 ### Frontend
 - **Framework**: Vue.js 3 (Composition API)
 - **HTTP Client**: Axios
-- **Validation**: Custom JavaScript/TypeScript validation logic
+- **Validation**: Custom JavaScript validation logic
 - **Styling**: Scoped CSS with responsive table layouts
 
 ## 📋 Features & Requirements
